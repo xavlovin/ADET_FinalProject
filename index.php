@@ -409,7 +409,11 @@ include 'includes/header.php';
                 let items = PRODUCTS.filter(p => this.cat === 'All' ? true : p.category === this.cat);
                 if (this.query.trim()) {
                     const q = this.query.toLowerCase();
-                    items = items.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+                    items = items.filter(p => 
+                        p.name.toLowerCase().includes(q) || 
+                        p.category.toLowerCase().includes(q) || 
+                        (p.tagline && p.tagline.toLowerCase().includes(q))
+                    );
                 }
                 return items.sort((a, b) => {
                     if (this.sort === 'az') return a.name.localeCompare(b.name);
