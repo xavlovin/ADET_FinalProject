@@ -1,6 +1,13 @@
 <?php
 session_start();
-$conn = mysqli_connect("sql210.infinityfree.com", "if0_42394947", "JNTPCCkOUESli", "if0_42394947_db_ghealth");
+$host = $_SERVER['HTTP_HOST'] ?? '';
+if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
+    // Localhost XAMPP credentials
+    $conn = mysqli_connect("localhost", "root", "", "db_ghealth");
+} else {
+    // InfinityFree Live credentials
+    $conn = mysqli_connect("sql210.infinityfree.com", "if0_42394947", "JNTPCCkOUESli", "if0_42394947_db_ghealth");
+}
 if (!$conn) {
     die("Connection Failed: " . mysqli_connect_error());
 }
